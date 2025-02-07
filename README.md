@@ -1,3 +1,25 @@
+# Columbus Cringe-ier
+
+I love the [cringe](https://cringe.com/) website, and I'd like to spruce it up a little bit
+
+## Features
+- Calendar of all upcoming and past columbus live music events
+
+## Upcoming features
+- Map view
+    - See the map of all cbus venues for the date you've selected
+- Venue view
+    - List of previous and upcoming shows by venue
+    - Pictures of venue
+    - Link out to venue site
+- Band view
+    - List of previous and upcoming shows by band
+- Portal for bands
+- Portal for venues
+- Portal for promoters
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
