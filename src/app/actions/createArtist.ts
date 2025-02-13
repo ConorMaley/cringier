@@ -2,6 +2,7 @@
 
 import Artist from "@/models/Artist";
 import dbConnect from "../lib/dbConnect";
+import { revalidatePath } from "next/cache";
 
 export async function createArtist(_: any, formData: FormData) {
     try {
@@ -16,6 +17,9 @@ export async function createArtist(_: any, formData: FormData) {
         await dbConnect();
     
         await Artist.create(createParams);
+
+        // oh that's slick
+        revalidatePath('/admin/artists');
 
         return true;
     } catch (error) {
