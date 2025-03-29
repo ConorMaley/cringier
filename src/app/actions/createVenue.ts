@@ -2,6 +2,7 @@
 
 import Venue from "@/models/Venue";
 import dbConnect from "../lib/dbConnect";
+import { revalidatePath } from "next/cache";
 
 export async function createVenue(_: any, formData: FormData) {
     try {
@@ -17,6 +18,8 @@ export async function createVenue(_: any, formData: FormData) {
         await dbConnect();
     
         await Venue.create(createParams);
+
+        revalidatePath('/admin/venues');
 
         return true;
     } catch (error) {

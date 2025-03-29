@@ -9,13 +9,13 @@ export default async function Page({ params }: { params: { page: string } }) {
     }
 
     return (
-        <div>
+        <div className="mx-2">
             {artists.map((artists) => (
                 <div key={String(artists._id)}>
                     <Link href={`/admin/artist/${artists.alias}`}>
-                        <div className="border-solid border-green-300 border-2 hover:border-transparent hover:bg-gray-700">
-                            <h3>{artists.name}</h3>
-                            <p>{artists.genres}</p>
+                        <div className="hover:bg-gray-700">
+                            <h3 className="text-2xl">{artists.name}</h3>
+                            <p className="italic">Genres: {artists.genres || 'No genres specified'}</p>
                         </div>
                     </Link>
                 </div>

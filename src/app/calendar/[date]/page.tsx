@@ -6,7 +6,10 @@ export default async function Page({ params }: { params: { date: string } }) {
     await dbConnect(); // there should be an easier way to "globally" connect app to db
     const { date } = await params;
     const shows = await Show.find({ dateTime: { $gte: new Date(date), $lt: new Date(date + "T23:59:59.999Z") } }); 
-    console.log({ shows });
+    
+    if (!shows.length) {
+        return <div>No shows found!</div>;
+    }
 
     return (
         <div>

@@ -3,8 +3,23 @@
 import { createArtist } from "@/app/actions/createArtist";
 import { useActionState } from "react";
 
+interface PopulateAliasEvent extends React.ChangeEvent<HTMLInputElement> {}
+
 export default function ArtistForm() {
   const [state, action, pending] = useActionState(createArtist, null);
+
+
+  const populateAlias = (e: PopulateAliasEvent): void => {
+    const name = e.target.value;
+    const alias = name
+      .toLowerCase()
+      .replace(/ /g, "-")
+      .replace(/[^a-z0-9-]/g, "");
+    const aliasInput = document.getElementById("alias") as HTMLInputElement | null;
+    if (aliasInput) {
+      aliasInput.value = alias;
+    }
+  };
 
   return (
     <div>
@@ -21,6 +36,7 @@ export default function ArtistForm() {
             type="text"
             id="name"
             name="name"
+            onChange={populateAlias}
             required
           />
         </div>
@@ -74,7 +90,7 @@ export default function ArtistForm() {
           >
             Genres
           </label>
-          MULTI SELECT with search option here
+          TODO MULTI SELECT with search option here
         </div>
         <button
           type="submit"

@@ -9,14 +9,14 @@ export default async function Page({ params }: { params: { page: string } }) {
     }
 
     return (
-        <div>
+        <div className="mx-2">
             {venues.map((venue) => (
                 <div key={String(venue._id)}>
                     <Link href={`/admin/venue/${venue.alias}`}>
                         <div className="hover:bg-gray-700">
-                            <h1>{venue.name}</h1>
-                            <p>{venue.address}</p>
-                            <p>{venue.description}</p>
+                            <h1 className="text-2xl">{venue.name}</h1>
+                            <p className="text-sm">Address: {venue.address || 'N/A'}</p>
+                            <p className="text-xs italic">{venue.description || 'N/A'}</p>
                         </div>
                     </Link>
                 </div>

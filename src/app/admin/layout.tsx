@@ -24,7 +24,7 @@ export default function Layout({ children }: {
     children: React.ReactNode
   }) {
     const pathname = usePathname();
-    const selectedPage = navConfig.find((navItem) => navItem.href === pathname);
+    const selectedPage = navConfig.find((navItem) => pathname.includes(navItem.href));
     return (
         <div>
             <h3 className="text-2xl">Admin Page</h3>

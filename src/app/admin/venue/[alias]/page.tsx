@@ -1,4 +1,5 @@
 import Venue, { IVenue } from '@/models/Venue';
+import DeleteVenueButton from '../../_components/deleteVenueButton';
 
 export default async function Page({ params }: { params: { alias: string } }) {
     const { alias } = await params;
@@ -16,7 +17,7 @@ export default async function Page({ params }: { params: { alias: string } }) {
                 <div>Phone: {venue.phone}</div>
                 <div>URL: {venue.url ? <a href={venue.url} target="_blank">{venue.url}</a> : 'N/A'}</div>
             </div>
-            TODO editable form fields
+            <DeleteVenueButton alias={venue.alias} />
         </div>
     )
 };
