@@ -12,13 +12,21 @@ export async function createShow(_: any, formData: FormData) {
         const startTime = formData.get('start_time') as string;
         const endTime = formData.get('end_time') as string;
         const description = formData.get('description');
+        
+        // Validate that end time is after start time
+        const startDate = new Date(startTime);
+        const endDate = new Date(endTime);
+        
+        if (endDate <= startDate) {
+            return { error: "End time must be after start time" };
+        }
     
         const createParams = { 
             artist: artistAlias, 
             venue: venueAlias, 
             title, 
-            startTime: new Date(startTime), 
-            endTime: endTime ? new Date(endTime) : null, 
+            startTime: startDate, 
+            endTime: endDate, 
             description 
         };
 
@@ -28,10 +36,10 @@ export async function createShow(_: any, formData: FormData) {
 
         revalidatePath('/admin/shows');
 
-        return true;
+        return { success: true };
     } catch (error) {
         console.error(error);
 
-        return false;
+        return { error: "Failed to create show" };
     }
 }

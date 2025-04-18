@@ -30,7 +30,26 @@ export default async function Page({ params }: { params: { page: string } }) {
                     <Link href={`/admin/show/${show.id}`}>
                         <div className="hover:bg-gray-700">
                             <h1 className="text-2xl">{show.title}</h1>
-                            <p className="text-sm">{show.startTime.toDateString()} {show.endTime ? ` - ${show.endTime.toDateString()}` : ''}</p>
+                            <p className="text-sm">
+                              {new Date(show.startTime).toLocaleString('en-US', {
+                                weekday: 'short',
+                                month: 'short', 
+                                day: 'numeric',
+                                year: 'numeric',
+                                hour: 'numeric',
+                                minute: '2-digit',
+                                hour12: true
+                              })}
+                              {show.endTime ? ` - ${new Date(show.endTime).toLocaleString('en-US', {
+                                weekday: 'short',
+                                month: 'short',
+                                day: 'numeric',
+                                year: 'numeric',
+                                hour: 'numeric',
+                                minute: '2-digit',
+                                hour12: true
+                              })}` : ''}
+                            </p>
                             <p className="text-sm">Artist: {artistsByAlias[show.artist]?.name || 'N/A'}</p>
                             <p className="text-sm">Venue: {venuesByAlias[show.venue]?.name || 'N/A'}</p>
                             <p className="text-sm">Address: {venuesByAlias[show.venue].address || 'N/A'}</p>
